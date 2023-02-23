@@ -5,12 +5,12 @@ on:
       - master
   workflow_dispatch:
 jobs:
-  Deploy:
+  Build-Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Add Dependencies
-      - run: egrep -R --exclude-dir=node_modules '=\s*require\s*\(' | awk '{gsub(/^.+require\s*\(\s*./,""); gsub(/.\s*\).*$/,""); print $0}' | xargs npm i
-      
+      - run: egrep -R --exclude-dir=node_modules "=\s*require\s*\(" | awk "{gsub(/^.+require\s*\(\s*./,\"\"); gsub(/.\s*\).*$/,\"\"); print $0}" | xargs npm i
+    
       - name: Prepare Dependencies
       - uses: actions/checkout@v2
       - run: npm run build
