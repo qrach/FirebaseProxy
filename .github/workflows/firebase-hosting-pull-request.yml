@@ -8,15 +8,13 @@ jobs:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
     runs-on: ubuntu-latest
     steps:
-      - name: Automatically Add Dependencies
-      - uses: actions/checkout@v2
+      - name: Prepare Dependencies
       - run: 'egrep -R --exclude-dir=node_modules "=\s*require\s*\(" | awk "{gsub(/^.+require\s*\(\s*./,\"\"); gsub(/.\s*\).*$/,\"\"); print $0}" | xargs npm i'
     
-      - name: Prepare Dependencies
+      - name: Build and Deploy to Firebase Preview Channel
       - uses: actions/checkout@v2
-      - run: npm run build
+      - run: 'npm run build'
       
-      - name: Deploy to Firebase Preview Channel
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
