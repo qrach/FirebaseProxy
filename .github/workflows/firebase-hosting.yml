@@ -18,7 +18,7 @@ jobs:
       - name: Deploy to Firebase Live Channel
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_QRACH_PROX }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_QRACH_PROX }}"
           channelId: live
           projectId: qrach-prox
