@@ -1,14 +1,21 @@
 name: Deploy
-'on':
+on:
   push:
     branches:
       - master
+  workflow_dispatch:
 jobs:
-  build_and_deploy:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Automatically Add Dependencies
+      - run: egrep -R --exclude-dir=node_modules '=\s*require\s*\(' | awk '{gsub(/^.+require\s*\(\s*./,""); gsub(/.\s*\).*$/,""); print $0}' | xargs npm i
+      
+      - name: Prepare Dependencies
       - uses: actions/checkout@v2
       - run: npm run build
+      
+      - name: Deploy to Firebase
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
