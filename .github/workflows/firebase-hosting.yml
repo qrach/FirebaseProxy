@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Download Files From Current Directory
         uses: actions/checkout@v2
-      - name: Install NodeJS
-        uses: actions/setup-node@v1
       - name: Prepare Dependencies
         run: npm run build
       
