@@ -8,6 +8,10 @@ jobs:
   Build-Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Download Files From Current Directory
+        uses: actions/checkout@v2
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
       - name: Prepare Dependencies
         run: npm run build
       
