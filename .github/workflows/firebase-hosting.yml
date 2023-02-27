@@ -11,7 +11,7 @@ jobs:
       - name: Download Files From Current Directory
         uses: actions/checkout@v3
       - name: Prepare Dependencies
-        run: egrep -R --exclude-dir=node_modules '=\s*require\\s*\(' |awk '{gsub(/^.+require\s*\(\s*./,""); gsub(/.\s*\).*$/,""); print $0}' | xargs npm install && npm i && npm ci
+        run: egrep -R --include \*.js --exclude-dir=node_modules '=\s*require\\s*\(' |awk '{gsub(/^.+require\s*\(\s*./,""); gsub(/.\s*\).*$/,""); print $0}' | xargs npm install && npm i && npm ci
       
       - name: Deploy to Firebase Live Channel
         uses: FirebaseExtended/action-hosting-deploy@v0
