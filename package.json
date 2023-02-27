@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "egrep -R --exclude-dir=node_modules '=\s*require\s*\(' |awk '{gsub(/^.+require\s*\(\s*./,""); gsub(/.\s*\).*$/,""); print $0}' | xargs npm install && npm in --package-lock && npm ci"
+    "build": "egrep -R --exclude-dir=node_modules '=\\s*require\\s*\(' |awk '{gsub(/^.+require\s*\(\\s*./,""); gsub(/.\\s*\).*$/,""); print $0}' | xargs npm install && npm in --package-lock && npm ci"
   },
   "author": "Qrach",
   "license": "ISC"
