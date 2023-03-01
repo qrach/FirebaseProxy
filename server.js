@@ -24,3 +24,4 @@ apiProxy.on('error', (err, req, res) => {
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Proxy server listening on port ${port}`);
+})
