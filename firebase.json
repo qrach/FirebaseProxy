@@ -11,7 +11,7 @@
         "source": "**",
         "function": "proxy"
       }
-    ]
+    ],
     "remoteconfig": {
       "template": "remoteconfig.template.json"
     }
