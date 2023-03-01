@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm i && npm ci"
   },
+  "dependencies": {
+    "express": "^4.17.2",
+    "http-proxy": "^1.18.1"
+  },
   "author": "Qrach",
   "license": "ISC"
 }
