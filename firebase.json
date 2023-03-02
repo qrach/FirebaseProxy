@@ -9,7 +9,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "proxy"
+        "function": "prox"
       }
     ],
     "remoteconfig": {
