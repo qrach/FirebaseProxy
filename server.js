@@ -4,7 +4,7 @@ const app = express();
 const apiProxy = httpProxy.createProxyServer();
 
 // Proxy middleware
-app.use('/proxy', (req, res) => {
+app.use('/prox', (req, res) => {
   const urienc = req.query.urienc;
   if (!urienc) {
     res.status(400).send('Missing "urienc" parameter');
