@@ -1,28 +1,24 @@
-const express = require('express');
+const http = require('http');
 const httpProxy = require('http-proxy');
-const app = express();
-const apiProxy = httpProxy.createProxyServer();
 
-// Proxy middleware
-app.use('/prox', (req, res) => {
-  res.send('Proxy server is running');
-  const urienc = req.query.urienc;
+const proxy = httpProxy.createProxyServer({});
+
+const server = http.createServer((req, res) => {
+  const urienc = req.url.slice(6); // slice '/prox?' from the url
   if (!urienc) {
-    res.status(400).send('Missing "urienc" parameter');
+    res.writeHead(400, { 'Content-Type': 'text/plain' });
+    res.end('Missing "urienc" parameter');
     return;
   }
   const uri = Buffer.from(urienc, 'base64').toString();
-  apiProxy.web(req, res, { target: uri });
+  proxy.web(req, res, { target: uri }, err => {
+    console.log('Proxy error:', err);
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end('Proxy error');
+  });
 });
 
-// Error handling
-apiProxy.on('error', (err, req, res) => {
-  console.log('Proxy error:', err);
-  res.status(500).send('Proxy error');
-});
-
-// Start server
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Proxy server listening on port ${port}`);
 });
