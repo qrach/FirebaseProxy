@@ -6,6 +6,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "rewrites": [
+      {
+        "source": "/prox",
+        "function": "prox"
+      }
+    ],
     "remoteconfig": {
       "template": "remoteconfig.template.json"
     }
