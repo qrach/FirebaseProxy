@@ -4,7 +4,7 @@ const app = express();
 const apiProxy = httpProxy.createProxyServer();
 
 // Proxy middleware
-app.use('/prox', (req, res) => {
+app.use('/proxy', (req, res) => {
   const urienc = req.query.urienc;
   if (!urienc) {
     res.status(400).send('Missing "urienc" parameter');
@@ -24,4 +24,4 @@ apiProxy.on('error', (err, req, res) => {
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Proxy server listening on port ${port}`);
-})
+});
